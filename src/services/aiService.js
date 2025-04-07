@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+// Cloudflare Worker URL
+const CLOUDFLARE_WORKER_URL = 'https://shrill-disk-e215.hrsprojects2024.workers.dev';
+
 // Groq API integration for image and text understanding
 export async function processQuestionWithGroq(image, text) {
   try {
@@ -29,9 +32,9 @@ export async function processQuestionWithGroq(image, text) {
       top_p: 1
     };
 
-    // For actual implementation, use Cloudflare Worker to proxy the request
+    // Use the provided Cloudflare Worker URL
     const response = await axios.post(
-      'https://api.studybuddy-worker.workers.dev/groq',
+      `${CLOUDFLARE_WORKER_URL}/groq`,
       payload
     );
 
@@ -86,9 +89,9 @@ export async function processImageWithGroq(image, text) {
       top_p: 1
     };
 
-    // For actual implementation, use Cloudflare Worker to proxy the request
+    // Use the provided Cloudflare Worker URL
     const response = await axios.post(
-      'https://api.studybuddy-worker.workers.dev/groq',
+      `${CLOUDFLARE_WORKER_URL}/groq`,
       payload
     );
 
@@ -160,9 +163,9 @@ Provide a comprehensive, accurate, and educational answer. If the web search res
       }
     };
 
-    // Send request to Gemini via Cloudflare Worker
+    // Send request to Gemini via Cloudflare Worker - use the provided URL
     const response = await axios.post(
-      'https://api.studybuddy-worker.workers.dev/gemini',
+      `${CLOUDFLARE_WORKER_URL}/gemini`,
       payload
     );
 
@@ -216,9 +219,9 @@ Provide a comprehensive, educational explanation that is accurate and easy to un
       }
     };
 
-    // Send request to Gemini via Cloudflare Worker
+    // Send request to Gemini via Cloudflare Worker - use the provided URL
     const response = await axios.post(
-      'https://api.studybuddy-worker.workers.dev/gemini',
+      `${CLOUDFLARE_WORKER_URL}/gemini`,
       payload
     );
 
@@ -234,7 +237,7 @@ Provide a comprehensive, educational explanation that is accurate and easy to un
 export async function searchWeb(query) {
   try {
     const response = await axios.post(
-      'https://api.studybuddy-worker.workers.dev/search',
+      `${CLOUDFLARE_WORKER_URL}/search`,
       { 
         query,
         search_depth: 'advanced',
